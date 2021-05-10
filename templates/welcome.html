@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Home Page</title>
 <style>
     div{
         position: absolute;
@@ -16,7 +16,20 @@
 <div>
 <button type="button" onclick="location.href='{% url 'logout' %}'">Logout</button>
 </div>
-
+{% csrf_token %}
 Welcome {{ e }}
+<form action="/allanime/" method="get">
+<table class="table is-fullwidth is-striped is-bordered"><thead><tr><th>
+{% for i in res %}
+<img src="{{ i.image_url }}">
+<a href="">{{ i.title }}</a><br><br>
+    {{ i.synopsis }}<br><br>
+{% endfor %}
+
+</th></tr>
+    </thead>
+</table>
+</form>
+
 </body>
 </html>
