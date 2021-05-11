@@ -294,7 +294,7 @@ body {
 </head>
 <body>
 <div class="login-box">
-    <h2>login</h2>
+    <h2>Login</h2>
 <form action="/postsign/" method="post">
     {% csrf_token  %}
      <div class="user-box">
@@ -303,9 +303,9 @@ body {
      </div>
 
     <div class="user-box">
-    <input type="password" name="passw">
+    <input type="password" name="passw" required="">
         <label>Password :</label>
-    </div><a>
+    </div>
     <span></span>
     <span></span>
     <span></span>

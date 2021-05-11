@@ -19,8 +19,7 @@ authe=firebase.auth()
 database=firebase.database()
 #login
 def signIn(request):
-    return render(request,"signIn.html")
-
+    return render(request, "signIn.html")
 
 def postsign(request):
     email=request.POST.get('email')
@@ -29,7 +28,7 @@ def postsign(request):
         user = authe.sign_in_with_email_and_password(email,passw)
     except:
         message="Invalid credentials"
-        return render(request, "SignIn.html",{"message":message})
+        return render(request, "signIn.html", {"message":message})
     print(user['idToken'])
     session_id=user['idToken']
     request.session['uid']=str(session_id)
@@ -37,7 +36,7 @@ def postsign(request):
 
 def logout(request):
     auth.logout(request)
-    return render(request,"signIn.html")
+    return render(request, "signIn.html")
 
 
 def signup(request):
@@ -51,10 +50,10 @@ def postsignup(request):
         user=authe.create_user_with_email_and_password(email,passw)
     except:
         message="Unable to create account try again"
-        return render(request,"signIn.html",{"message"})
+        return render(request, "signIn.html", {"message"})
         uid = user['localId']
 
     data={"name":name,"status":"1"}
 
   #  database.child("users").child(uid).child("details").set(data)
-    return render(request,"signIn.html")
+    return render(request, "signIn.html")

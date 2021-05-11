@@ -2,34 +2,167 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <title>Home Page</title>
-<style>
-    div{
-        position: absolute;
-        right: 10px;
-        top: 5px;
-    }
-</style>
-</head>
+    <style>
+{##}
+{#.grid-container {#}
+{#  display: grid;#}
+{#  grid-template-columns: auto auto auto;#}
+{#  background-color: #2196F3;#}
+{#  padding: 10px;#}
 
+{#.grid-item {#}
+{#  background-color: rgba(255, 255, 255, 0.8);#}
+{#  border: 1px solid rgba(0, 0, 0, 0.8);#}
+{#  padding: 20px;#}
+{#  font-size: 30px;#}
+{#  text-align: center;#}
+
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+.container{
+  display: grid;
+    width: 800px;
+    margin: 50px auto 0;
+    box-sizing: border-box;
+}
+.row{
+    margin: 10px 0;
+}
+.column{
+    background: 	#0082e6;
+    display: table-cell;
+    padding:10px;
+    width: 33.3333%;
+    text-align: center;
+    vertical-align: middle;
+}
+body{
+
+    background: 	#0082e6;
+  font-family: montserrat;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+nav{
+  background: #0082e6;
+  height: 80px;
+  width: 100%;
+}
+label.logo{
+  color: white;
+  font-size: 35px;
+  line-height: 80px;
+  padding: 0 100px;
+  font-weight: bold;
+}
+nav ul{
+  float: right;
+  margin-right: 20px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+}
+nav ul li a{
+  color: white;
+  font-size: 17px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+a.active,a:hover{
+  background: #1b9bff;
+  transition: .5s;
+}
+.checkbtn{
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+@media (max-width: 952px){
+  label.logo{
+    font-size: 30px;
+    padding-left: 50px;
+  }
+  nav ul li a{
+    font-size: 16px;
+  }
+}
+@media (max-width: 858px){
+  .checkbtn{
+    display: block;
+  }
+  ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  a:hover,a.active{
+    background: none;
+    color: #0082e6;
+  }
+  #check:checked ~ ul{
+    left: 0;
+  }
+}
+    </style>
+</head>
 <body>
-<div>
-<button type="button" onclick="location.href='{% url 'logout' %}'">Logout</button>
-</div>
+<nav>
+   <label for="check" class="checkbtn">
+       <i class="fas fa-bars"></i>
+   </label>
+    <label class="logo">Anitosho</label>
+          <ul >
+              <li><a onclick="location.href='{% url 'allanime' %}'">Anime</a></li>
+          <li><a onclick="location.href='{% url 'logout' %}'">Logout</a></li>
+          </ul>
+</nav>
 {% csrf_token %}
-Welcome {{ e }}
 <form action="/allanime/" method="get">
-<table class="table is-fullwidth is-striped is-bordered"><thead><tr><th>
 {% for i in res %}
-<img src="{{ i.image_url }}">
-<a href="">{{ i.title }}</a><br><br>
-    {{ i.synopsis }}<br><br>
+<div class="container">
+<div class="row">
+    <div class="column">
+    <img  src="{{ i.image_url }}">
+
+        <h1>{{ i.title }}</h1>
+    <p class="mage__description">{{ i.synopsis }}</p>
+</div>
+    </div>
+</div>
+</form>
 {% endfor %}
 
-</th></tr>
-    </thead>
-</table>
-</form>
-
-</body>
+  </body>
 </html>
