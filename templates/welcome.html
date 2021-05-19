@@ -4,22 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-    <title>Home Page</title>
+   <title>Home Page</title>
     <style>
-{##}
-{#.grid-container {#}
-{#  display: grid;#}
-{#  grid-template-columns: auto auto auto;#}
-{#  background-color: #2196F3;#}
-{#  padding: 10px;#}
-
-{#.grid-item {#}
-{#  background-color: rgba(255, 255, 255, 0.8);#}
-{#  border: 1px solid rgba(0, 0, 0, 0.8);#}
-{#  padding: 20px;#}
-{#  font-size: 30px;#}
-{#  text-align: center;#}
-
 *{
   padding: 0;
   margin: 0;
@@ -27,31 +13,103 @@
   list-style: none;
   box-sizing: border-box;
 }
-.container{
-  display: grid;
-    width: 800px;
-    margin: 50px auto 0;
-    box-sizing: border-box;
-}
-.row{
-    margin: 10px 0;
-}
-.column{
-    background: 	#0082e6;
-    display: table-cell;
-    padding:10px;
-    width: 33.3333%;
-    text-align: center;
-    vertical-align: middle;
-}
 body{
-
     background: 	#0082e6;
-  font-family: montserrat;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+}@import url("https://fonts.googleapis.com/css?family=Poppins&display=swap");
+
+
+
+.grid {
+  display: grid;
+  width: 114em;
+  grid-gap: 6rem;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  align-items: start;
 }
+
+.grid-item {
+  background-color: #fff;
+  border-radius: 0.4rem;
+  overflow: hidden;
+  box-shadow: 0 3rem 6rem rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.grid-item:hover {
+  transform: translateY(-0.5%);
+  box-shadow: 0 4rem 8rem rgba(0, 0, 0, 0.5);
+}
+
+.card-img {
+  display: block;
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 3rem;
+}
+
+.card-header {
+  font-size: 3rem;
+  font-weight: 500;
+  color: #0d0d0d;
+  margin-bottom: 1.5rem;
+}
+
+.card-text {
+  font-size: 1.6rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.7;
+  color: #3d3d3d;
+  margin-bottom: 2.5rem;
+}
+
+.card-btn {
+  display: block;
+  width: 100%;
+  padding: 1.5rem;
+  font-size: 2rem;
+  text-align: center;
+  color: #3363ff;
+  background-color: #d8e0fd;
+  border: none;
+  border-radius: 0.4rem;
+  transition: 0.2s;
+  cursor: pointer;
+  letter-spacing: 0.1rem;
+}
+
+.card-btn span {
+  margin-left: 1rem;
+  transition: 0.2s;
+}
+
+.card-btn:hover,
+.card-btn:active {
+  background-color: #c2cffc;
+}
+
+.card-btn:hover span,
+.card-btn:active span {
+  margin-left: 1.5rem;
+}
+
+@media only screen and (max-width: 60em) {
+  body {
+    padding: 3rem;
+  }
+
+  .grid {
+    grid-gap: 3rem;
+  }
+}
+
 nav{
   background: #0082e6;
   height: 80px;
@@ -144,25 +202,71 @@ a.active,a:hover{
    </label>
     <label class="logo">Anitosho</label>
           <ul >
-              <li><a onclick="location.href='{% url 'allanime' %}'">Anime</a></li>
-          <li><a onclick="location.href='{% url 'logout' %}'">Logout</a></li>
+              <li><a style="   text-decoration: none; ">Anime</a></li>
+          <li><a style="   text-decoration: none; " onclick="location.href='{% url 'logout' %}'">Logout</a></li>
           </ul>
 </nav>
 {% csrf_token %}
-<form action="/allanime/" method="get">
-{% for i in res %}
-<div class="container">
-<div class="row">
-    <div class="column">
-    <img  src="{{ i.image_url }}">
 
-        <h1>{{ i.title }}</h1>
-    <p class="mage__description">{{ i.synopsis }}</p>
+<div class="grid">
+    <div class="grid-item">
+        <div class="card">
+            <img class="card-img" src="https://www.allcenter.com.br/wp-content/uploads/2017/05/naruto_shippuden_492986-800x353.jpg">
+        </div>
+        <div class="card-content">
+            <h2 class="card-header">Naruto Shippuuden</h2>
+            <p class="card-text">Animation | Drama | Adventure</p>
+            <button class="card-btn">Open<span>&rarr;</span></button>
+        </div>
+
 </div>
+
+    <div class="grid-item">
+        <div class="card">
+            <img class="card-img" src="https://www.denofgeek.com/wp-content/uploads/2019/11/Attack-on-Titan-Season-4-Release-Date-Trailer-News.jpg?fit=1200%2C700">
+        </div>
+        <div class="card-content">
+            <h2 class="card-header">Attack on Titan</h2>
+            <p class="card-text">Animation | Drama | Adventure</p>
+            <button class="card-btn">Open<span>&rarr;</span></button>
+        </div>
     </div>
+    <div class="grid-item">
+        <div class="card">
+            <img class="card-img" src="https://vkakoyserii.com/wp-content/uploads/2019/10/R93Zd.jpg">
+        </div>
+        <div class="card-content">
+            <h2 class="card-header">One Piece</h2>
+            <p class="card-text">Animation | Drama | Adventure</p>
+            <button class="card-btn">Open<span>&rarr;</span></button>
+        </div></div>
+    <div class="grid-item">
+        <div class="card">
+            <img class="card-img" src="https://thenewsfetcher.com/wp-content/uploads/2020/08/The-Violet-Evergarden-Movie.jpg">
+        </div>
+        <div class="card-content">
+            <h2 class="card-header">Violet Evergarden</h2>
+            <p class="card-text">Fantasy | Drama </p>
+            <button class="card-btn">Open<span>&rarr;</span></button>
+        </div></div>
+    <div class="grid-item">
+        <div class="card">
+            <img class="card-img" src="https://videotapenews.com/wp-content/uploads/2020/10/black-clover-anime.jpg">
+        </div>
+        <div class="card-content">
+            <h2 class="card-header">Black Clover</h2>
+            <p class="card-text">Magic | Shounen | Adventure</p>
+            <button class="card-btn">Open<span>&rarr;</span></button>
+        </div></div>
+    <div class="grid-item">
+        <div class="card">
+            <img class="card-img" src="https://img3.goodfon.ru/wallpaper/nbig/8/89/sword-art-online-sao-kirito.jpg">
+        </div>
+        <div class="card-content">
+            <h2 class="card-header">Sword Art Online</h2>
+            <p class="card-text">Drama | Adventure</p>
+            <button class="card-btn">Open<span>&rarr;</span></button>
+        </div></div>
 </div>
-</form>
-{% endfor %}
-
   </body>
 </html>

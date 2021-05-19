@@ -1,7 +1,6 @@
 from django.shortcuts import render
 import pyrebase
 from django.contrib import auth
-# Create your views here.
 firebaseConfig = {
     'apiKey': "AIzaSyD_hCkHYvWxGBWfIO1Z0COFnt0UxvpOem4",
     'authDomain': "anitosho-1186b.firebaseapp.com",
@@ -12,15 +11,11 @@ firebaseConfig = {
     'measurementId': "G-8RB84DWZTC",
     'databaseURL': "ref"
   }
-
-
 firebase=pyrebase.initialize_app(firebaseConfig)
 authe=firebase.auth()
 database=firebase.database()
-#login
 def signIn(request):
     return render(request, "signIn.html")
-
 def postsign(request):
     email=request.POST.get('email')
     passw=request.POST.get('passw')
@@ -33,17 +28,12 @@ def postsign(request):
     session_id=user['idToken']
     request.session['uid']=str(session_id)
     return render(request,"welcome.html",{"e":email})
-
 def logout(request):
     auth.logout(request)
     return render(request, "signIn.html")
-
-
 def signup(request):
     return render(request,"signup.html")
-
 def postsignup(request):
-    name=request.POST.get('name')
     email=request.POST.get('email')
     passw=request.POST.get('passw')
     try:
@@ -52,8 +42,5 @@ def postsignup(request):
         message="Unable to create account try again"
         return render(request, "signIn.html", {"message"})
         uid = user['localId']
-
-    data={"name":name,"status":"1"}
-
-  #  database.child("users").child(uid).child("details").set(data)
+    authe.send_email_verification(user['idToken'])
     return render(request, "signIn.html")
